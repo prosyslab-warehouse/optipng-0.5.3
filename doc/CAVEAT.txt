@@ -1,0 +1,35 @@
+
+CAVEAT EMPTORE
+==============
+(known bugs, problems, or limitations in the current version of OptiPNG)
+
+
+Legend
+------
+ - Minor bug, limitation, or incompletely-implemented feature.
+   Not dangerous.
+ ! Bug that may cause OptiPNG to act differently than intended,
+   but without causing accidental data loss.
+   Inconvenient, but not dangerous.
+!! Bug that may cause accidental data loss.
+   Dangerous.
+ * Another problematic issue, that is not necessarily a bug.
+
+
+Version 0.5.3   23-jul-2006
+-------------
+ - Lossless image reductions are not completely implemented.
+   (This does NOT affect the integrity of PNG files.)
+   Here are the missing pieces:
+   - The color palette reductions are implemented only partially.
+   - The bit depth reductions below 8, for grayscale images, are
+     not implemented yet.
+   - The gray(alpha)-to-palette reductions are not implemented yet.
+
+ - BMP support is limited to uncompressed images.
+
+ - TIFF support is limited to uncompressed, PNG-compatible
+   (grayscale, RGB and RGBA) images.
+
+ - Metadata is not imported from the external image formats.
+

@@ -1,0 +1,208 @@
+
+OptiPNG - Revision history
+==========================
+
+Legend
+------
+++ Added or improved feature that might affect compression ratio
+   and/or speed.
+ + Added or improved feature.
+ - Removed feature.
+ * Other modification (e.g. architectural improvement).
+ ! Fixed bug.
+!! Fixed dangerous bug that might cause accidental data loss.
+
+
+Version 0.5.3   23-jul-2006
+-------------
+ + Upgraded libpng to version 1.2.12-optipng [private]
+ + Implemented basic support for TIFF (grayscale, RGB and RGBA,
+   uncompressed).
+++ Avoided the redundant trial when the search space is singular
+   (e.g. when running "optipng -o1 example.tif").
+ + Prevented accidental file corruption when using option "-log".
+ ! Fixed (again) a small typo in the online help.
+
+
+Version 0.5.2    7-may-2006
+-------------
+ + Improved handling of inexact PNM-to-PNG conversions.
+ ! Fixed a typo that was breaking the build on some Unix platforms.
+   (Thanks to Aaron Reitz for the report.)
+
+
+Version 0.5.1   30-apr-2006
+-------------
+++ Implemented bit depth reduction for palette images.
+ + Upgraded libpng to version 1.2.10-optipng [private]
+ + Improved the BMP support.
+ + Added a Unix man page.
+   (Thanks to Nelson A. de Oliveira for the contribution.)
+ + Allowed abbreviation of command-line options.
+ + Changed user option -log to accept a file name as an argument.
+ * Changed user option -no to -simulate.
+ ! Fixed an error in handling .bak files on Unix.
+   (Thanks to Adam Szojda and Nelson A. de Oliveira for the report.)
+ ! Fixed a small typo in the help screen.
+   (Thanks to A. Costa and Nelson A. de Oliveira for the report.)
+ + Added the GUIDE and THANKS documents.
+ * Converted some text document files to HTML.
+
+
+Version 0.5     14-jan-2006
+-----------
+++ Added pngxtern, a libpng add-on for external image format
+   support: BMP (uncompressed), GIF, PNM.
+   (This was incorporated from OptiPNG-Plus.)
+++ Implemented RGB(A)-to-palette reductions.
+ + Upgraded zlib to version 1.2.3-optipng [private]
+ + Upgraded libpng to version 1.2.8-optipng [private]
+ + If trials are ended prematurely, detailed progression is only
+   reported under the user option -v.
+ - Removed reporting of some IDAT sizes that exceeded the optimum.
+   (This was NOT a bug, but a "feature" that confused some users.)
+ ! Fixed an RGB-to-gray reduction problem that occured under some
+   specific background colors.
+ + Added support for builds based on the system-supplied zlib.
+   (Thanks to Nelson A. de Oliveira for the suggestion.)
+ * Modified LICENSE.  It is now a verbatim spell of the zlib license.
+
+
+Version 0.4.8   10-may-2005
+-------------
+ + Upgraded libpng to version 1.0.18-optipng [private]
+!! Fixed a palette-to-gray reduction problem that occurred when an
+   RGB triple had both an alpha below max, and an alpha equal to max.
+   (Thanks to Nicolas Le Gland for the report.)
+ + Packed the Windows executable using UPX.
+   (Thanks to [Warriant] for the suggestion.)
+
+
+Version 0.4.7   30-oct-2004
+-------------
+!! Fixed a palette-to-gray reduction problem that occurred when
+   having more than one alpha value per RGB triple.
+   (Thanks to Larry Hastings for the report.)
+ ! Fixed the progress display, when processing very large images.
+ + Displayed the image info at the beginning of processing.
+++ Reduced the IDAT buffer size, allowing abandoned trials to
+   terminate earlier in some circumstances.
+ + Implemented error recovery, when PLTE is too small, and/or
+   tRNS is too large.
+
+
+Version 0.4.6   25-oct-2004
+-------------
+ + Upgraded zlib to version 1.2.2-optipng [private]
+ + Upgraded libpng to version 1.0.17-optipng [private]
+   This provides safe handling of some ill-formed PNG images.
+ + Rewrote makefiles.
+ + Added project workspace to build under Visual C++ 6.0,
+   integrated with memory leak detection.
+++ Implemented a premature termination of trials, in the moment
+   when IDAT grows beyond the smallest size previously achieved.
+   (Thanks to Larry Hastings for the idea.)
+ + Changed the order of trials, to perform the trials that are
+   more likely to yield a smaller IDAT, at the beginning.
+ + Added user option -full to avoid the premature termination of
+   trials; useful for debugging.
+
+
+Version 0.4.5   31-may-2004
+-------------
+ + Upgraded zlib to version 1.2.1.f-cos2 [private]
+ + Upgraded libpng to version 1.0.15-cos2 [private]
+ * Changed user option -nx to -nz.
+ + Added user option to preserve file attributes (file mode,
+   time stamp, etc.) when applicable.
+   (Thanks to Nehal Mistry for the suggestion.)
+ ! Fixed an incorrect initialization of zlib window bits.
+ ! Displayed an error message when the search space was invalid.
+!! Fixed a palette reduction problem for bit depths below 8.
+ ! Eliminated memory leaks.
+   (Thanks to Niels de Koning for the help.)
+
+
+Version 0.4.4   20-nov-2003
+-------------
+ + Upgraded zlib to version 1.2.1
+++ Added support for the Z_RLE strategy.
+
+
+Version 0.4.3   12-aug-2003
+-------------
+ ! Fixed a reduction problem that caused an assertion failure.
+   (Thanks to Dimitri Papadopoulos for the report.)
+
+
+Version 0.4.2   30-jun-2003
+-------------
+++ Enhanced the support for palette size reductions:
+   trailing sterile palette entries are removed even when
+   the bit depth is below 8.
+ ! Enforced recompression when the new IDAT has the same size,
+   but other chunks have been reduced.
+ + Displayed the IDAT size difference as a percentage.
+   (Thanks to Nehal Mistry for the suggestion.)
+
+
+Version 0.4.1   19-may-2003
+-------------
+ ! Fixed the removal of trailing sterile palette entries.
+
+
+Version 0.4     12-may-2003
+-----------
+++ Added support for palette-to-gray reductions.
+++ Added partial support for palette size reductions.
+ ! Fixed the reporting of invalid command-line options.
+ ! Eliminated a spurious warning when the zlib window size
+   is set to 256.
+
+
+Version 0.3.2   11-mar-2003
+-------------
+ + Added support for updating sBIT during reductions.
+ ! Fixed the reduction of the alpha channel.
+
+
+Version 0.3.1   25-feb-2003
+-------------
+ ! Fixed the encoding of interlaced images when they become
+   larger than the input.
+   (Thanks to James H. Cloos, Jr. for the report.)
+ + Added the HISTORY document (this file).
+
+
+Version 0.3     24-feb-2003
+-----------
+ This is the first public release of OptiPNG.
+++ Added support for iterating through zlib memory levels.
+++ Added support for collapsing IDAT, avoiding calls to
+   png_set_compression_buffer_size().
+   This reduces the memory requirements.
+++ Added support for lossless reduction of the image type:
+   RGB[A] -> G[A], RGBA -> RGB, GA -> G
+ + Added many user options.
+ + Added documentation.
+
+
+Version 0.2     27-dec-2001
+-----------
+ + Added support for optimization level presets.
+ + Added user option for changing the interlacing.
+
+
+Version 0.1     17-dec-2001
+-----------
+ + Added support for chunk I/O status annotation.
+   This improves the speed of OptiPNG significantly.
+ * Structured exception handling is provided by cexcept.
+
+
+Version 0.0     10-dec-2001
+-----------
+This is the very first version of OptiPNG.
+It compresses IDAT repeatedly, iterating through zlib compression
+and strategy levels, and PNG filters.
+
